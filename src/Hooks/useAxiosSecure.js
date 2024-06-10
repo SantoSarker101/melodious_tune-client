@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const axiosSecure = axios.create({
 	baseURL: `${import.meta.env.VITE_API_BASE_URL}`,
@@ -11,7 +11,7 @@ const useAxiosSecure = () => {
 	const { logOut } = useContext(AuthContext)
 	const navigate = useNavigate()
 useEffect(() => {
-	// Intercept request (Client --> Server)
+	// 1. Intercept request (Client ----> Server)
 	axiosSecure.interceptors.request.use(config => {
 		const token = `Bearer ${localStorage.getItem('access-token')}`
 		if(token){
@@ -23,7 +23,7 @@ useEffect(() => {
 
 
 
-	// Intercept Response (Client <-- Server)
+	// 2. Intercept Response (Client <---- Server)
 	axiosSecure.interceptors.response.use((response) => {
 		return response
 	}, async error => {
@@ -35,7 +35,7 @@ useEffect(() => {
 		}
 		return Promise.reject(error)
 	})
-},[logOut, navigate])
+},[logOut, navigate, axiosSecure])
 
 
 

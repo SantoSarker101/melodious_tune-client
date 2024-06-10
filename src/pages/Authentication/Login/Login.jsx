@@ -5,8 +5,10 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import toast from "react-hot-toast";
 import { ImSpinner3 } from "react-icons/im";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const Login = () => {
+  const [axiosSecure] = useAxiosSecure()
   const { loading,setLoading,signIn,signInWithGoogle } = useContext(AuthContext)
   const navigate = useNavigate();
   const location = useLocation();
@@ -23,6 +25,7 @@ const Login = () => {
     signIn(data.email, data.password)
 		.then(result => {
 			console.log(result.user);
+      toast.success('Login successful');
 			navigate(from, { replace: true })
 		})
 		.catch(err => {
@@ -39,6 +42,19 @@ const Login = () => {
     signInWithGoogle()
     .then(result => {
       console.log(result.user);
+      toast.success('Login successful');
+
+       // Save User to Database
+       const saveUser = {name: result.user.displayName, email: result.user.email}
+
+       axiosSecure.put(`/users/${result?.user?.email}`, saveUser)
+       .then(data => {
+         console.log(data);
+       })
+       .catch(error => {
+         console.log(error);
+       })
+
       navigate(from, { replace: true })
     })
     .catch(err => {
@@ -109,10 +125,10 @@ const Login = () => {
         <p className='px-6 text-sm text-center text-gray-400'>
           Already have an account?{' '}
           <Link
-            to='/login'
-            className='hover:underline hover:text-rose-500 text-gray-600'
+            to='/signup'
+            className='hover:underline hover:text-rose-500 text-gray-400'
           >
-            Login
+            Sign Up
           </Link>
 
         </p>

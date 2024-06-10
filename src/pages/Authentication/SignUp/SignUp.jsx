@@ -4,8 +4,10 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import { ImSpinner3 } from "react-icons/im";
 import { FcGoogle } from "react-icons/fc";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const SignUp = () => {
+  const [axiosSecure] = useAxiosSecure()
 	const { loading,setLoading,createUser,signInWithGoogle,updateUserProfile } = useContext(AuthContext)
 	const navigate = useNavigate()
 	const location = useLocation()
@@ -69,6 +71,18 @@ const SignUp = () => {
           .then(() => {
             // console.log(result.user);
             toast.success('Signup successful');
+
+            // Save User to Database
+            const saveUser = {name: result.user.displayName, email: result.user.email}
+
+            axiosSecure.put(`/users/${result?.user?.email}`, saveUser)
+            .then(data => {
+              console.log(data);
+            })
+            .catch(error => {
+              console.log(error);
+            })
+
             navigate(form, {replace: true})
 			setEr('')
           })
@@ -101,6 +115,19 @@ const SignUp = () => {
 		signInWithGoogle()
 		.then(result => {
 			console.log(result.user);
+      toast.success('Signup successful');
+
+       // Save User to Database
+       const saveUser = {name: result.user.displayName, email: result.user.email}
+
+       axiosSecure.put(`/users/${result?.user?.email}`, saveUser)
+       .then(data => {
+         console.log(data);
+       })
+       .catch(error => {
+         console.log(error);
+       })
+
 			navigate(form, { replace: true })
 		})
 		.catch(err => {
