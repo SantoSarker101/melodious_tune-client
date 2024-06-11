@@ -21,6 +21,11 @@ const DropdownMenu = () => {
 				Home
 			</div>
 		</Link>
+		<Link to='/'>
+			<div className='hidden md:block text-sm py-3 px-4 rounded-full text-white  hover:bg-purple-950 font-bold  transition cursor-pointer'>
+				{user && <p>{user.name}</p>}
+			</div>
+		</Link>
 
 		<div className='hidden md:block text-sm py-3 px-4 rounded-full text-white  hover:bg-purple-950 font-bold transition cursor-pointer'>
 			Instructors
