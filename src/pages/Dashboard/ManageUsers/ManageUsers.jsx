@@ -83,12 +83,11 @@ const ManageUsers = () => {
         <th>{index + 1}</th>
         <td>{user.name}</td>
         <td>{user.email}</td>
-        <td>{user.role}</td>
 
         <td className="flex gap-8 justify-center">
 
 		<span className={`cursor-pointer flex flex-col gap-1 hover:text-green-500 ${user.role === 'Instructor' && 'hidden'}`}><span>{
-			user.role === 'admin' ? <span className="text-green-400 font-extrabold ">Admin</span> : <span onClick={() => handleMakeAdmin(user)}><FaUserShield className='w-5 h-5'></FaUserShield>
+			user.role === 'admin' ? <span className="text-green-400 font-extrabold cursor-not-allowed opacity-50">Admin</span> : <span onClick={() => handleMakeAdmin(user)}><FaUserShield className='w-5 h-5'></FaUserShield>
 			<>{
 			user.role === 'admin' || <span>Make Admin</span>
 			}</>

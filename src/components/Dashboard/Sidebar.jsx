@@ -7,6 +7,7 @@ import { AuthContext } from '../../providers/AuthProvider'
 import { FaBuffer, FaHome, FaUsers } from 'react-icons/fa'
 import { MdManageHistory } from 'react-icons/md'
 import useAdmin from '../../Hooks/useAdmin'
+import useInstructor from '../../Hooks/useInstructor'
 
 const Sidebar = () => {
 	const navigate = useNavigate()
@@ -28,6 +29,7 @@ const Sidebar = () => {
   // TODO
   // const isAdmin = true;
   const [isAdmin] = useAdmin()
+  const [isInstructor] = useInstructor()
 
 	return (
 		<div>
@@ -61,7 +63,6 @@ const Sidebar = () => {
 			<h4 className='mx-2 mt-2 text-gray-800 font-extrabold hover:underline'>
                  Hi, {user?.displayName}
                 </h4>
-
             </div>
           </div>
 
@@ -90,7 +91,7 @@ const Sidebar = () => {
 
 
         <NavLink
-          to='/dashboard/ManageUsers'
+          to='/dashboard/manageUsers'
           className={({ isActive }) =>
             `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
               isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
@@ -102,12 +103,12 @@ const Sidebar = () => {
           <span className='mx-4 font-medium'>Manage Users</span>
         </NavLink>
 
-      </> :
+      </> :  isInstructor ?
 
       <>
 
       <NavLink
-        to='add-room'
+        to='/dashboard/add-classes'
         className={({ isActive }) =>
           `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform       hover:bg-gray-300   hover:text-gray-700 ${
             isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
@@ -122,7 +123,7 @@ const Sidebar = () => {
 
 
       <NavLink
-        to='add-room'
+        to='/dashboard/my-classes'
         className={({ isActive }) =>
           `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform       hover:bg-gray-300   hover:text-gray-700 ${
            isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
@@ -133,6 +134,24 @@ const Sidebar = () => {
         <FaBuffer className='w-5 h-5' />
 
         <span className='mx-4 font-medium'>My Classes</span>
+      </NavLink>
+
+      </>
+
+      : <>
+
+<NavLink
+        to='/dashboard/bookings'
+        className={({ isActive }) =>
+          `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform       hover:bg-gray-300   hover:text-gray-700 ${
+           isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+          }`
+        }
+      >
+
+        <FaBuffer className='w-5 h-5' />
+
+        <span className='mx-4 font-medium'>Bookings</span>
       </NavLink>
 
       </>

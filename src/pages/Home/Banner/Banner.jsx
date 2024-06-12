@@ -159,8 +159,6 @@ const Banner = () => {
 					<motion.p initial={{ opacity: 0, y: -500 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 2 }} className='text-xs md:text-xl text-center'>Cultural differences, and the effect on society.</motion.p>
-
-					{user && <p>${user.role}</p>}
 				</div>
 			</div>
                 </div>
