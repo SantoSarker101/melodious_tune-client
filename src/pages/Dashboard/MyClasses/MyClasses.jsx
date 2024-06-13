@@ -1,7 +1,44 @@
+import { FaTrashAlt } from "react-icons/fa";
 import useClasses from "../../../Hooks/useClasses";
+import Swal from "sweetalert2";
+import { MdSystemUpdateAlt } from "react-icons/md";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const MyClasses = () => {
-	const [classes] = useClasses();
+	const [classes, , refetch] = useClasses();
+	const [axiosSecure] = useAxiosSecure()
+
+	const handleDelete = cls => {
+		Swal.fire({
+			title: "Are you sure?",
+			text: "You won't be able to revert this!",
+			icon: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#3085d6",
+			cancelButtonColor: "#d33",
+			confirmButtonText: "Yes, delete it!"
+		}).then((result) => {
+			if (result.isConfirmed) {
+
+			axiosSecure.delete(`/classes/${cls._id}`)
+			.then(res => {
+				console.log('Deleted Classes', res.data);
+
+				if(res.data.deletedCount > 0){
+					refetch();
+
+				Swal.fire({
+					title: "Deleted!",
+					text: "Your Class has been deleted.",
+					icon: "success"
+				});
+
+				}
+			})
+			}
+		});
+	}
+
 	return (
 		<div>
 			<h1 className="text-3xl text-center font-extrabold my-6">My Classes</h1>
@@ -13,53 +50,58 @@ const MyClasses = () => {
 
 
     {/* head */}
-    <thead>
+    <thead className="text-white font-extrabold">
       <tr>
-        <th>
-          <label>
-            <input type="checkbox" className="checkbox" />
-          </label>
-        </th>
-        <th>Name</th>
-        <th>Job</th>
-        <th>Favorite Color</th>
-        <th></th>
+        <th>No.</th>
+        <th>Class Image</th>
+        <th>Class name</th>
+        <th>Instructor name</th>
+        <th>Available seats</th>
+        <th>Price</th>
+        <th>Update</th>
+		<th>Delete</th>
+		<th>Status</th>
+        <th>Feedback</th>
       </tr>
     </thead>
 
 
 
-    <tbody>
+    <tbody className="text-white">
 
-      <tr>
-        <th>
-          <label>
-            <input type="checkbox" className="checkbox" />
-          </label>
-        </th>
-        <td>
-          <div className="flex items-center gap-3">
-            <div className="avatar">
-              <div className="mask mask-squircle w-12 h-12">
-                <img src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
-              </div>
-            </div>
-            <div>
-              <div className="font-bold">Hart Hagerty</div>
-              <div className="text-sm opacity-50">United States</div>
-            </div>
-          </div>
-        </td>
-        <td>
-          Zemlak, Daniel and Leannon
-          <br/>
-          <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
-        </td>
-        <td>Purple</td>
-        <th>
-          <button className="btn btn-ghost btn-xs">details</button>
-        </th>
-      </tr>
+	{
+		classes.map((cls, index) => <tr key={cls._id}>
+
+		<td>{index + 1}</td>
+
+		<td>
+			<div className="flex items-center gap-3">
+			<div className="avatar">
+				<div className="mask mask-squircle w-12 h-12">
+				<img src={cls.image} alt="Avatar Tailwind CSS Component" />
+				</div>
+			</div>
+			</div>
+		</td>
+		<td className="font-bold">{cls.name}</td>
+		<td>{cls.instructorInfo.instructorName}</td>
+		<td>{cls.seats}</td>
+		<td>{cls.price} $</td>
+		<td>
+		<button className="btn btn-ghost bg-purple-500 text-white">
+		<MdSystemUpdateAlt />
+		</button>
+		</td>
+		<td>
+		<button onClick={() => handleDelete(cls)} className="btn btn-ghost bg-red-500 text-white">
+			<FaTrashAlt></FaTrashAlt>
+		</button>
+		</td>
+		<td>{cls.status}</td>
+		<td></td>
+
+		</tr>)
+	}
 
     </tbody>
 
