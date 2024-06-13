@@ -1,31 +1,111 @@
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import { AuthContext } from '../../../providers/AuthProvider';
+
+
+const img_hosting_token = import.meta.env.VITE_IMGBB_KEY
 
 const AddClasses = () => {
+	const {user} = useContext(AuthContext)
 	const { register, handleSubmit, formState: { errors } } = useForm();
-	const onSubmit = data => console.log(data);
+
+	const url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
+
+	const onSubmit = data => {
+		// console.log(data)
+		const formData = new FormData()
+		formData.append('image', data.image[0])
+
+		fetch(url, {
+			method: 'POST',
+			body: formData
+		})
+		.then(res => res.json())
+		.then(imgResponse => {
+			const imageURL = imgResponse.data.display_url
+
+			const instructor = {
+				instructorName: user.displayName,
+				instructorPhoto: user.photoURL,
+				instructorEmail: user.email
+			}
+
+			const {name, seats, price, category, status, details} = data;
+
+			const newClass = {name, image: imageURL, seats, price: parseFloat(price), category, status, details, instructorInfo: instructor}
+			console.log(newClass);
+		})
+	};
 	console.log(errors);
-	
+
 	return (
 		<div className="px-10">
-			<h2 className="text-3xl">Add a New Item</h2>
+			<h2 className="text-3xl text-center font-extrabold my-6">Add a New Item</h2>
 
-			<form>
-			<div className="form-control w-full max-w-xs">
+	<form onSubmit={handleSubmit(onSubmit)} className='space-y-4 flex flex-col justify-center items-center'>
+
+
+	<div className='md:flex md:gap-4 lg:gap-40 space-y-4 md:space-y-0'>
+	<div className="form-control w-full max-w-xs">
 	<div className="label">
-    <span className="label-text">Name of Class *</span>
+    <span className="label-text">Class Name *</span>
 
   </div>
-  <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
+  <input type="text" placeholder="Class Name"
+ {...register("name", {required: true, maxLength: 150})}
+  className="input input-bordered w-full max-w-xs" />
 
 </div>
 
 
 <div className="form-control w-full max-w-xs">
+
+  <div className="label">
+    <span className="label-text">Class Image *</span>
+
+  </div>
+
+  <input  {...register("image", { required: true })} type="file" className="file-input file-input-bordered w-full max-w-xs" />
+
+</div>
+	</div>
+
+
+	<div className='md:flex md:gap-4 lg:gap-40 space-y-4 md:space-y-0'
+	>
+	<div className="form-control w-full max-w-xs">
+	<div className="label">
+    <span className="label-text">Available Seats *</span>
+
+  </div>
+  <input type="number"
+ {...register("seats", { required: true })}
+  placeholder="Price" className="input input-bordered w-full max-w-xs" />
+
+</div>
+
+
+<div className="form-control w-full max-w-xs">
+	<div className="label">
+    <span className="label-text">Price *</span>
+
+  </div>
+  <input type="number"
+ {...register("price", { required: true })}
+  placeholder="Price" className="input input-bordered w-full max-w-xs" />
+
+</div>
+	</div>
+
+
+
+	<div className='md:flex md:gap-4 lg:gap-40 space-y-4 md:space-y-0'>
+	<div className="form-control w-full max-w-xs">
   <div className="label">
     <span className="label-text">Category *</span>
   </div>
-  <select className="select select-bordered">
-    <option disabled selected>Pick one</option>
+  <select defaultValue='Pick One' {...register("category", { required: true })} className="select select-bordered">
+    <option disabled>Pick One</option>
     <option>Guitars</option>
     <option>Drums</option>
     <option>Piano</option>
@@ -39,37 +119,33 @@ const AddClasses = () => {
 
 <div className="form-control w-full max-w-xs">
 	<div className="label">
-    <span className="label-text">Price *</span>
+    <span className="label-text">Status *</span>
 
   </div>
-  <input type="numer" placeholder="Price" className="input input-bordered w-full max-w-xs" />
+  <input type="text" placeholder="Status"
+  value='Pending'
+ {...register("status", {required: true, maxLength: 150})}
+  className="input input-bordered w-full max-w-xs text-yellow-600" />
+
+</div>
+	</div>
+
+
+
+<div className="form-control w-full max-w-xs">
+  <div className="label">
+    <span className="label-text">Class Details</span>
+
+  </div>
+
+  <textarea className="textarea textarea-bordered h-24 max-w-xs"
+  {...register("details", { required: true })}
+  placeholder="Description"></textarea>
 
 </div>
 
 
-<div className="form-control">
-  <div className="label">
-    <span className="label-text">Description</span>
-
-  </div>
-
-  <textarea className="textarea textarea-bordered h-24" placeholder="Description"></textarea>
-
-</div>
-
-
-<label className="form-control w-full max-w-xs">
-
-  <div className="label">
-    <span className="label-text">Class Image</span>
-
-  </div>
-
-  <input type="file" className="file-input file-input-bordered w-full max-w-xs" />
-
-</label>
-
-<input className="btn border-indigo-500 border-2 btn-warning" type="submit" value='Add Classes' />
+<input className="btn border-indigo-500 border-2 btn-warning mt-5" type="submit" value='Add Classes' />
 
 
 			</form>
