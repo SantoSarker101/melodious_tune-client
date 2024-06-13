@@ -38,7 +38,7 @@ const AddClasses = () => {
 			const newClass = {name, image: imageURL, seats, price: parseFloat(price), enrolled: parseInt(enrolled), category, status, details, instructorInfo: instructor}
 			console.log(newClass);
 
-			axiosSecure.post('/menu', newClass)
+			axiosSecure.post('/classes', newClass)
 			.then(data => {
 				console.log('After Posting New Classes', data.data);
 

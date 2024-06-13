@@ -7,7 +7,7 @@ const ManageClasses = () => {
 	const [classes, , refetch] = useClasses();
 	const [axiosSecure] = useAxiosSecure()
 
-	// This Function is for make starus Approved
+	// This Function is for make status Approved
 	const handleApprove = cls => {
 		axiosSecure.patch(`/classes/approve/${cls._id}`)
 		.then(res => {
@@ -27,7 +27,7 @@ const ManageClasses = () => {
 	}
 
 
-	// This Function is for make starus Denied
+	// This Function is for make status Denied
 	const handleDeny = cls => {
 		axiosSecure.patch(`/classes/deny/${cls._id}`)
 		.then(res => {
@@ -101,11 +101,11 @@ const ManageClasses = () => {
 				Approve
 			</button>
 			{
-				cls?.status === 'Approved' ? <button className="text-green-400 font-extrabold cursor-not-allowed opacity-50">Approved</button> : <></>
+				cls?.status === 'Approved' ? <button className="px-2 py-2 rounded-lg bg-green-600 font-extrabold cursor-not-allowed opacity-50">Approved</button> : <></>
 			}
 
 			{
-				cls?.status === 'Denied' ? <button className="btn bg-red-500 hover:bg-red-700 text-white font-extrabold cursor-not-allowed opacity-50">Denied</button> : <></>
+				cls?.status === 'Denied' ? <button className="px-4 py-2 rounded-lg bg-red-500 text-white font-extrabold cursor-not-allowed opacity-50">Denied</button> : <></>
 			}
 
 			<button onClick={() => handleDeny(cls)} disabled={cls?.status === 'Approved' || cls?.status === 'Denied'} className="btn bg-red-500 hover:bg-red-700 text-white font-bold">
