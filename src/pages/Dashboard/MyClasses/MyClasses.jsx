@@ -41,7 +41,7 @@ const MyClasses = () => {
 
 	return (
 		<div>
-			<h1 className="text-3xl text-center font-extrabold my-6">My Classes</h1>
+			<h1 className="text-3xl text-center font-extrabold my-6 text-white">My Classes</h1>
 
 
 
