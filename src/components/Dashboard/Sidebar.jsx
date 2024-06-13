@@ -57,7 +57,7 @@ const Sidebar = () => {
         <div>
           {/* Melodious Tune Profile Info */}
           <div>
-            <div className='w-full md:flex py-2 justify-center items-center bg-rose-100 mx-auto'>
+            <div className='w-full md:flex py-2 justify-center items-center bg-rose-300 mx-auto'>
               {/* <Logo /> */}
 
 			<h4 className='mx-2 mt-2 text-gray-800 font-extrabold hover:underline'>

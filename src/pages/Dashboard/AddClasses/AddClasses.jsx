@@ -1,13 +1,16 @@
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../../providers/AuthProvider';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
 
 
 const img_hosting_token = import.meta.env.VITE_IMGBB_KEY
 
 const AddClasses = () => {
+	const [axiosSecure] = useAxiosSecure()
 	const {user} = useContext(AuthContext)
-	const { register, handleSubmit, formState: { errors } } = useForm();
+	const { register, handleSubmit } = useForm();
 
 	const url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
 
@@ -30,13 +33,29 @@ const AddClasses = () => {
 				instructorEmail: user.email
 			}
 
-			const {name, seats, price, category, status, details} = data;
+			const {name, seats, price, category, status, details, enrolled} = data;
 
-			const newClass = {name, image: imageURL, seats, price: parseFloat(price), category, status, details, instructorInfo: instructor}
+			const newClass = {name, image: imageURL, seats, price: parseFloat(price), enrolled: parseInt(enrolled), category, status, details, instructorInfo: instructor}
 			console.log(newClass);
+
+			axiosSecure.post('/menu', newClass)
+			.then(data => {
+				console.log('After Posting New Classes', data.data);
+
+				if(data.data.insertedId){
+					// reset()
+					Swal.fire({
+						position: "top-end",
+						icon: "success",
+						title: "Class Added Successfully",
+						showConfirmButton: false,
+						timer: 1500
+					});
+				}
+			})
 		})
 	};
-	console.log(errors);
+	// console.log(errors);
 
 	return (
 		<div className="px-10">
@@ -80,7 +99,7 @@ const AddClasses = () => {
   </div>
   <input type="number"
  {...register("seats", { required: true })}
-  placeholder="Price" className="input input-bordered w-full max-w-xs" />
+  placeholder="Available Seats" className="input input-bordered w-full max-w-xs" />
 
 </div>
 
@@ -106,7 +125,7 @@ const AddClasses = () => {
   </div>
   <select defaultValue='Pick One' {...register("category", { required: true })} className="select select-bordered">
     <option disabled>Pick One</option>
-    <option>Guitars</option>
+    <option>Guitar</option>
     <option>Drums</option>
     <option>Piano</option>
     <option>Violin</option>
@@ -143,6 +162,20 @@ const AddClasses = () => {
   placeholder="Description"></textarea>
 
 </div>
+
+
+<div className="form-control w-full max-w-xs">
+	<div className="label">
+    <span className="label-text">Total Enrolled Students *</span>
+
+  </div>
+  <input type="number" placeholder="Total Enrolled Students"
+  value='0'
+ {...register("enrolled", {required: true, maxLength: 150})}
+  className="input input-bordered w-full max-w-xs text-yellow-600" />
+
+</div>
+
 
 
 <input className="btn border-indigo-500 border-2 btn-warning mt-5" type="submit" value='Add Classes' />
