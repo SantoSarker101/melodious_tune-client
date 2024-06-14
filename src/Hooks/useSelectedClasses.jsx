@@ -14,7 +14,6 @@ const useSelectedClasses = () => {
 			return res.data
 		} })
 
-
 		return [selectedClasses, refetch]
 };
 

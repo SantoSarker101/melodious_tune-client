@@ -1,13 +1,14 @@
 import React, { useContext, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 // import Logo from '../Shared/Navbar/Logo'
-import { GrLogout } from 'react-icons/gr'
+import { GrCheckboxSelected, GrLogout } from 'react-icons/gr'
 import { AiOutlineBars } from 'react-icons/ai'
 import { AuthContext } from '../../providers/AuthProvider'
 import { FaBuffer, FaHome, FaUsers } from 'react-icons/fa'
 import { MdManageHistory } from 'react-icons/md'
 import useAdmin from '../../Hooks/useAdmin'
 import useInstructor from '../../Hooks/useInstructor'
+import { RiSecurePaymentFill } from 'react-icons/ri'
 
 const Sidebar = () => {
 	const navigate = useNavigate()
@@ -149,9 +150,9 @@ const Sidebar = () => {
         }
       >
 
-        <FaBuffer className='w-5 h-5' />
+        <GrCheckboxSelected className='w-5 h-5' />
 
-        <span className='mx-4 font-medium'>My Selected Classes</span>
+        <span className='mx-4 font-medium'>Selected Classes</span>
       </NavLink>
 
 
@@ -163,10 +164,9 @@ const Sidebar = () => {
           }`
         }
       >
+        <RiSecurePaymentFill className='w-5 h-5' />
 
-        <FaBuffer className='w-5 h-5' />
-
-        <span className='mx-4 font-medium'>My Enrolled Classes</span>
+        <span className='mx-4 font-medium'>Enrolled Classes</span>
       </NavLink>
 
       </>
