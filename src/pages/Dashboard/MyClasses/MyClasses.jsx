@@ -99,7 +99,7 @@ const MyClasses = () => {
 		</td>
 		<td>
 		{
-			cls?.status === 'Approved' ? <button className="text-lg text-green-500 font-extrabold">{cls.status}</button> : cls?.status === 'Denied' ? <button className="text-lg text-red-500 font-extrabold">{cls.status}</button> : <button className="text-lg text-cyan-400 font-extrabold">{cls.status}</button>
+			cls?.status === 'Approved' ? <button className="text-lg cursor-auto text-green-500 font-extrabold">{cls.status}</button> : cls?.status === 'Denied' ? <button className="text-lg cursor-auto text-red-500 font-extrabold">{cls.status}</button> : <button className="text-lg cursor-auto text-cyan-400 font-extrabold">{cls.status}</button>
 		}
 		</td>
 		<td></td>

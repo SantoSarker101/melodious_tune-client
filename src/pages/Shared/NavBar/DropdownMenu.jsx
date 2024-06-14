@@ -23,9 +23,11 @@ const DropdownMenu = () => {
 		</Link>
 
 
-		<div className='hidden md:block text-sm py-3 px-4 rounded-full text-white  hover:bg-purple-950 font-bold transition cursor-pointer'>
+		<Link to='/instructors'>
+			<div className='hidden md:block text-sm py-3 px-4 rounded-full text-white  hover:bg-purple-950 font-bold transition cursor-pointer'>
 			Instructors
-		</div>
+			</div>
+		</Link>
 
 		<Link to='/classes'>
 			<div className='hidden md:block text-sm py-3 px-4 rounded-full text-white  hover:bg-purple-950 font-bold transition cursor-pointer'>
@@ -112,13 +114,13 @@ const DropdownMenu = () => {
 				Home
 			</Link>
 			<Link
-				to='/'
+				to='/classes'
 				className='block md:hidden px-4 py-3 text-green-700  hover:bg-neutral-200  transition font-bold'
 			>
 				Classes
 			</Link>
 			<Link
-				to='/'
+				to='/instructors'
 				className='block md:hidden px-4 py-3 text-green-700  hover:bg-neutral-200  transition font-bold'
 			>
 				Instructors

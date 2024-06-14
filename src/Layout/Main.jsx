@@ -7,9 +7,9 @@ const Main = () => {
 		<div>
 			<NavBar></NavBar>
 
-			<div className="pt-24 min-h-[calc(100vh-68px)]">
+			{/* <div className="pt-24 min-h-[calc(100vh-68px)]"> */}
 			<Outlet></Outlet>
-			</div>
+			{/* </div> */}
 
 			<Footer></Footer>
 		</div>
