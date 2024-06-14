@@ -1,11 +1,11 @@
 import { FaTrashAlt } from "react-icons/fa";
-import useClasses from "../../../Hooks/useClasses";
 import Swal from "sweetalert2";
 import { MdSystemUpdateAlt } from "react-icons/md";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useInstructorClasses from "../../../Hooks/useInstructorClasses";
 
 const MyClasses = () => {
-	const [classes, , refetch] = useClasses();
+	const [instructorClasses, , refetch] = useInstructorClasses();
 	const [axiosSecure] = useAxiosSecure()
 
 	const handleDelete = cls => {
@@ -20,9 +20,9 @@ const MyClasses = () => {
 		}).then((result) => {
 			if (result.isConfirmed) {
 
-			axiosSecure.delete(`/classes/${cls._id}`)
+			axiosSecure.delete(`/instructorClasses/${cls._id}`)
 			.then(res => {
-				console.log('Deleted Classes', res.data);
+				console.log('Deleted instructorClasses', res.data);
 
 				if(res.data.deletedCount > 0){
 					refetch();
@@ -41,7 +41,7 @@ const MyClasses = () => {
 
 	return (
 		<div>
-			<h1 className="text-3xl text-center font-extrabold my-6 text-white">My Classes</h1>
+			<h1 className="text-3xl text-center font-extrabold my-6 text-white">My instructorClasses</h1>
 
 
 
@@ -70,7 +70,7 @@ const MyClasses = () => {
     <tbody className="text-white">
 
 	{
-		classes.map((cls, index) => <tr key={cls._id}>
+		instructorClasses.map((cls, index) => <tr key={cls._id}>
 
 		<td>{index + 1}</td>
 
