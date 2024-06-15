@@ -24,7 +24,8 @@ const Instructor = () => {
 		}
 	},[users])
 	return (
-		<div>
+		<div className="pt-10 pb-8">
+			<h1 className="text-3xl text-white font-extrabold text-center">Instructors</h1>
 
 	<div className={`pt-24 md:pt-40 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 p-2 md:px-5 ${Instructors?.seats == 0? 'bg-red-600 text-white':''}`}>
 			{
