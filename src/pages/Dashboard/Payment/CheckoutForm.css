@@ -1,4 +1,4 @@
-/* These styles are used if a demo specific stylesheet is not present */
+/* These styles are used if a demo specific stylesheet is not present
 
 *,
 *:before,
@@ -18,7 +18,7 @@ label {
   letter-spacing: 0.025em;
   margin-top: 16px;
   display: block;
-}
+} */
 
 /* button {
   white-space: nowrap;
@@ -49,7 +49,17 @@ button[disabled] {
   opacity: 0.6;
 } */
 
-input,
+/* input,
+select{
+  background-color: wheat;
+}
+
+input::placeholder {
+  color: #aab7c4;
+} */
+
+
+/* input,
 select {
   display: block;
   border: none;
@@ -66,9 +76,6 @@ select {
   width: 500px;
 }
 
-input::placeholder {
-  color: #aab7c4;
-}
 
 .result,
 .error {
@@ -84,14 +91,14 @@ input::placeholder {
 
 .result {
   color: #666ee8;
-}
+} */
 
 /*
 The StripeElement class is applied to the Element container by default.
 More info: https://stripe.com/docs/stripe-js/reference#element-options
 */
 
-.StripeElement,
+/* .StripeElement,
 .StripeElementIdeal,
 .StripeElementP24,
 .StripeElementEPS,
@@ -127,4 +134,4 @@ More info: https://stripe.com/docs/stripe-js/reference#element-options
 .StripeElementEPS,
 .StripeElementFpx {
   padding: 0;
-}
+} */

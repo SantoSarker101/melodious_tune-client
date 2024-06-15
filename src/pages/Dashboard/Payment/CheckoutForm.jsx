@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { AuthContext } from "../../../providers/AuthProvider";
 import './CheckoutForm.css'
+import Swal from "sweetalert2";
 const CheckoutForm = ({ price, selectedClasses }) => {
 	const stripe = useStripe();
 	const elements = useElements();
@@ -80,9 +81,12 @@ const CheckoutForm = ({ price, selectedClasses }) => {
       name: user.displayName,
       transactionId: transactionId,
       price,
+      date: new Date(),
+      orderStatus: 'Service Pending',
       quantity: selectedClasses.length,
       selectedClassName: selectedClasses.map(item => item.name),
       selectedClassId: selectedClasses.map(item => item._id),
+      singleClassId: selectedClasses.map(item => item.classId),
       selectedClassImage: selectedClasses.map(item => item.image),
       selectedClassSeats: selectedClasses.map(item => item.seats),
       selectedClassEnrolled: selectedClasses.map(item => item.enrolled),
@@ -91,9 +95,15 @@ const CheckoutForm = ({ price, selectedClasses }) => {
 
     axiosSecure.post('/payments', payment)
     .then(res => {
-      console.log(res.data);;
-      if(res.data.insertedId){
-
+      console.log(res.data);
+      if(res.data.result.insertedId){
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `Dear ${user.displayName}, Bill Successfully Paid. Thank You So Much. and Your TransactionId is ${transactionId}`,
+          showConfirmButton: false,
+          timer: 1500
+        });
       }
     })
 

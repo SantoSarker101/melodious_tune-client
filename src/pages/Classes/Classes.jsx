@@ -19,6 +19,7 @@ const Classes = () => {
 	const [isAdmin] = useAdmin()
 	const [isInstructor] = useInstructor()
 
+
 	useEffect(() => {
 		if(classes && classes.length > 0){
 			const approvedClasses = classes.filter(cl => cl.status === 'Approved')
@@ -80,6 +81,8 @@ const Classes = () => {
 		<div className="pt-28 md:pt-32 pb-10">
 			<h1 className="text-2xl md:text-3xl text-white font-extrabold text-center">All Classes</h1>
 
+			{/* <button onClick={() => setAsc(!asc)} className="btn mt-5 ml-1 md:ml-5 bg-fuchsia-950 font-bold text-white">{asc ? 'Show Price High To Low' : 'Show Price Low To High'}</button> */}
+
 	{
 		approvedClasses && approvedClasses.length > 0 ? (<div className={`pt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 p-2 md:px-5 ${approvedClasses?.seats == 0? 'bg-red-600 text-white':''}`}>
 			{
@@ -138,7 +141,7 @@ const Classes = () => {
 			</div>)
 			}
 			</div>) : (
-			<h1 className="flex justify-center items-center text-red-500 text-3xl font-extrabold">No Class Available</h1>
+			<h1 className="flex justify-center items-center text-red-500 text-3xl font-extrabold mt-7">No Class Available</h1>
 		)
 	}
 
