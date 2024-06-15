@@ -81,7 +81,7 @@ const Classes = () => {
 			<h1 className="text-2xl md:text-3xl text-white font-extrabold text-center">All Classes</h1>
 
 	{
-		approvedClasses && approvedClasses.length > 0 ? (<div className="pt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 p-2 md:px-5">
+		approvedClasses && approvedClasses.length > 0 ? (<div className={`pt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 p-2 md:px-5 ${approvedClasses?.seats == 0? 'bg-red-600 text-white':''}`}>
 			{
 			approvedClasses.map(approvedClass =>  <div key={approvedClass._id} className='col-span-1 cursor-pointer group shadow-slate-50 shadow-md p-2 rounded-lg text-white'>
 				<div className='flex flex-col gap-2 w-full'>
@@ -117,7 +117,10 @@ const Classes = () => {
 					<span>Available Seats: </span>{approvedClass.seats}<span></span>
 				</div>
 				<div>
-					<span>Price:</span>{approvedClass.price} $<span></span>
+					<span>Price: </span>{approvedClass.price} $<span></span>
+				</div>
+				<div>
+					<span>Enrolled: </span>{approvedClass.enrolled}<span></span>
 				</div>
 
 				<div>
