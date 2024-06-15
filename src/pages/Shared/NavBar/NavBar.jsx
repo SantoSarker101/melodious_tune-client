@@ -24,8 +24,8 @@ const NavBar = () => {
 				{
 				isAdmin || isInstructor || <div>
 				<Link to='/dashboard/selected-classes'>
-				<FaShoppingCart></FaShoppingCart>
 				<div className="badge badge-secondary">+{selectedClasses.length || 0}</div>
+				<FaShoppingCart className='w-5 h-5'></FaShoppingCart>
 				</Link>
 			</div>
 			}

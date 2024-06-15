@@ -5,6 +5,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { FaTrashAlt, FaUserShield } from "react-icons/fa";
 import { GiTeacher } from "react-icons/gi";
 import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 const ManageUsers = () => {
 	const { loading } = useContext(AuthContext)
@@ -68,16 +69,17 @@ const ManageUsers = () => {
 		}).then((result) => {
 			if (result.isConfirmed) {
 
-			axiosSecure.delete(`/deleteUser/${user._id}`)
+			axiosSecure.delete(`/users/${user._id}`)
 			.then(res => {
-				console.log('Deleted User', res.data);
-
+				// console.log('Deleted User', res.data);
+				refetch();
+				toast.success(`${user.name} has been deleted.`)
 				if(res.data.deletedCount > 0){
-					refetch();
+
 
 				Swal.fire({
 					title: "Deleted!",
-					text: `${user.name} has been deleted.`,
+					text: "This User has been deleted.",
 					icon: "success"
 				});
 

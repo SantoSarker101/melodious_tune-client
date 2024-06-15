@@ -1,14 +1,16 @@
 import React, { useContext, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 // import Logo from '../Shared/Navbar/Logo'
-import { GrCheckboxSelected, GrLogout } from 'react-icons/gr'
+// import { GrCheckboxSelected, GrLogout } from 'react-icons/gr'
 import { AiOutlineBars } from 'react-icons/ai'
 import { AuthContext } from '../../providers/AuthProvider'
-import { FaBuffer, FaHome, FaUsers } from 'react-icons/fa'
+import { FaBuffer, FaHome, FaShoppingCart, FaUsers } from 'react-icons/fa'
 import { MdManageHistory } from 'react-icons/md'
 import useAdmin from '../../Hooks/useAdmin'
 import useInstructor from '../../Hooks/useInstructor'
 import { RiSecurePaymentFill } from 'react-icons/ri'
+import useSelectedClasses from '../../Hooks/useSelectedClasses'
+import { GrLogout } from 'react-icons/gr'
 
 const Sidebar = () => {
 	const navigate = useNavigate()
@@ -16,6 +18,8 @@ const Sidebar = () => {
 	const { user, logOut } = useContext(AuthContext)
 
 	const [isActive, setActive] = useState('false')
+
+  const [selectedClasses] = useSelectedClasses()
 
 	// Sidebar Responsive Handler
 	const handleToggle = () => {
@@ -150,7 +154,12 @@ const Sidebar = () => {
         }
       >
 
-        <GrCheckboxSelected className='w-5 h-5' />
+        {/* <GrCheckboxSelected className='w-5 h-5' /> */}
+        <div>
+
+				<span className="badge badge-secondary">+{selectedClasses.length || 0}</span>
+        <FaShoppingCart className='w-5 h-5'></FaShoppingCart>
+        </div>
 
         <span className='mx-4 font-medium'>Selected Classes</span>
       </NavLink>

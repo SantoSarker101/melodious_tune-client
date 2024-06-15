@@ -1,11 +1,12 @@
 import { FaTrashAlt } from "react-icons/fa";
 import useSelectedClasses from "../../../Hooks/useSelectedClasses";
 import Swal from "sweetalert2";
-import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
+// import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const SelectedClasses = () => {
 	const [selectedClasses, refetch] = useSelectedClasses()
-	const {axiosSecure} = useAxiosSecure()
+	// const {axiosSecure} = useAxiosSecure()
 
 	const total = selectedClasses.reduce((sum, classItem) => classItem.price + sum, 0)
 
@@ -59,7 +60,9 @@ const SelectedClasses = () => {
 		</div>
 
 
-		<button className="btn-secondary btn px-12 text-lg md:text-2xl font-extrabold">PAY</button>
+		<Link to='/dashboard/payment'>
+			<button className="btn-secondary btn px-12 text-lg md:text-2xl font-extrabold">PAY</button>
+		</Link>
 
 		</div>
 
@@ -67,16 +70,17 @@ const SelectedClasses = () => {
 			<div className="overflow-x-auto">
   <table className="table">
     {/* head */}
-    <thead>
+    <thead className="text-white font-extrabold md:text-lg">
       <tr>
-        <th>No.</th>
+        <th>Number</th>
         <th>Class Picture</th>
         <th>Class Name</th>
         <th>Price</th>
         <th>Action</th>
       </tr>
     </thead>
-    <tbody>
+
+    <tbody className="text-orange-300 font-extrabold">
 
     {
 		selectedClasses.map((selectedClass, index) => <tr key={selectedClass._id} >
