@@ -2,7 +2,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { AuthContext } from "../../../providers/AuthProvider";
-
+import './CheckoutForm.css'
 const CheckoutForm = ({ price, selectedClasses }) => {
 	const stripe = useStripe();
 	const elements = useElements();
@@ -73,7 +73,29 @@ const CheckoutForm = ({ price, selectedClasses }) => {
   if(paymentIntent.status === 'succeeded'){
     const transactionId = paymentIntent.id;
     setTransactionId(transactionId)
-    
+
+    // Save Payment information to the server
+    const payment = {
+      email: user?.email,
+      name: user.displayName,
+      transactionId: transactionId,
+      price,
+      quantity: selectedClasses.length,
+      selectedClassName: selectedClasses.map(item => item.name),
+      selectedClassId: selectedClasses.map(item => item._id),
+      selectedClassImage: selectedClasses.map(item => item.image),
+      selectedClassSeats: selectedClasses.map(item => item.seats),
+      selectedClassEnrolled: selectedClasses.map(item => item.enrolled),
+      selectedClassInstructorInfo: selectedClasses.map(item => item.instructorInfo),
+    }
+
+    axiosSecure.post('/payments', payment)
+    .then(res => {
+      console.log(res.data);;
+      if(res.data.insertedId){
+
+      }
+    })
 
   }
 
@@ -111,7 +133,6 @@ const CheckoutForm = ({ price, selectedClasses }) => {
       {
         transactionId && <h2 className="text-lg md:text-2xl text-green-500 font-extrabold text-center mt-10">Dear {user.displayName}, Bill Successfully Paid. Thank You So Much. and Your TransactionId is {transactionId}</h2>
       }
-
     </div>
 		</div>
 	);

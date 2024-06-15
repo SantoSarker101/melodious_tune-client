@@ -7,7 +7,7 @@ import useSelectedClasses from "../../../Hooks/useSelectedClasses";
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_PK)
 
 const Payment = () => {
-	const [selectedClasses, refetch] = useSelectedClasses()
+	const [selectedClasses] = useSelectedClasses()
 	const total = selectedClasses.reduce((sum, classItem) => classItem.price + sum, 0)
 	const price = parseFloat(total.toFixed(2))
 	return (

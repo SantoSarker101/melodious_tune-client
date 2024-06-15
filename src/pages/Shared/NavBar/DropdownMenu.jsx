@@ -35,15 +35,15 @@ const DropdownMenu = () => {
 			</div>
 		</Link>
 
+
+		{
+		user ? <>
+
 		<Link to='/dashboard'>
 		<div className='hidden md:block text-sm py-3 px-4 rounded-full text-white  hover:bg-purple-950 font-bold transition cursor-pointer'>
 			Dashboard
 		</div>
 		</Link>
-
-
-		{
-		user ? <>
 
 		<Link>
 
