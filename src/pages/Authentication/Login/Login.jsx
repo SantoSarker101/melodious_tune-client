@@ -45,7 +45,7 @@ const Login = () => {
       toast.success('Login successful');
 
        // Save User to Database
-       const saveUser = {name: result.user.displayName, email: result.user.email}
+       const saveUser = {name: result.user.displayName, email: result.user.email, image: result.user.photoURL}
 
        axiosSecure.put(`/users/${result?.user?.email}`, saveUser)
        .then(data => {

@@ -23,7 +23,7 @@ const DropdownMenu = () => {
 		</Link>
 
 
-		<Link to='/instructors'>
+		<Link to='/instructor'>
 			<div className='hidden md:block text-sm py-3 px-4 rounded-full text-white  hover:bg-purple-950 font-bold transition cursor-pointer'>
 			Instructors
 			</div>
@@ -120,7 +120,7 @@ const DropdownMenu = () => {
 				Classes
 			</Link>
 			<Link
-				to='/instructors'
+				to='/instructor'
 				className='block md:hidden px-4 py-3 text-green-700  hover:bg-neutral-200  transition font-bold'
 			>
 				Instructors

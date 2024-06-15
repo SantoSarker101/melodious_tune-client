@@ -73,7 +73,7 @@ const SignUp = () => {
             toast.success('Signup successful');
 
             // Save User to Database
-            const saveUser = {name: result.user.displayName, email: result.user.email}
+            const saveUser = {name: result.user.displayName, email: result.user.email, image: result.user.imageURL}
 
             axiosSecure.put(`/users/${result?.user?.email}`, saveUser)
             .then(data => {
@@ -118,7 +118,7 @@ const SignUp = () => {
       toast.success('Signup successful');
 
        // Save User to Database
-       const saveUser = {name: result.user.displayName, email: result.user.email}
+       const saveUser = {name: result.user.displayName, email: result.user.email, image: result.user.photoURL}
 
        axiosSecure.put(`/users/${result?.user?.email}`, saveUser)
        .then(data => {
