@@ -5,14 +5,14 @@ import { Navigate, useLocation } from "react-router-dom";
 
 const InstructorRoute = ({children}) => {
 	const { user, loading } = useContext(AuthContext);
-    const [isAdmin, isAdminLoading] = useInstructor();
+    const [isInstructor, isInstructorLoading] = useInstructor();
     const location = useLocation();
 
-    if (loading || isAdminLoading) {
+    if (loading || isInstructorLoading) {
         return <progress className="progress w-56"></progress>
     }
 
-    if (user && isAdmin) {
+    if (user && isInstructor) {
         return children;
     }
 

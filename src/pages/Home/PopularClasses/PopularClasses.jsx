@@ -1,16 +1,16 @@
 import { useContext, useEffect, useState } from "react";
-import useClasses from "../../Hooks/useClasses";
-import { AuthContext } from "../../providers/AuthProvider";
+// import useEnrolledClasses from "../../../Hooks/useEnrolledClasses";
+import { AuthContext } from "../../../providers/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useSelectedClasses from "../../../Hooks/useSelectedClasses";
+import useAdmin from "../../../Hooks/useAdmin";
+import useInstructor from "../../../Hooks/useInstructor";
 import Swal from "sweetalert2";
-import useSelectedClasses from "../../Hooks/useSelectedClasses";
-import useAdmin from "../../Hooks/useAdmin";
-import useInstructor from "../../Hooks/useInstructor";
 
-const Classes = () => {
+const PopularClasses = () => {
 	const [approvedClasses, setApprovedClasses] = useState([])
-	const [classes, , , asc, setAsc] = useClasses()
+	// const [enrollbasedClasses] = useEnrolledClasses()
 	const {user} = useContext(AuthContext)
 	const navigate = useNavigate()
 	const [axiosSecure] = useAxiosSecure()
@@ -18,15 +18,27 @@ const Classes = () => {
 	const [, refetch] = useSelectedClasses()
 	const [isAdmin] = useAdmin()
 	const [isInstructor] = useInstructor()
+	const [enrollbasedClasses, setEnrollbasedClasses] = useState([])
+
+	useEffect(() => {
+		fetch(`${import.meta.env.VITE_API_BASE_URL}/enrollbasedClasses`)
+		.then(res => res.json())
+		.then(data => {
+			console.log(data);
+			setEnrollbasedClasses(data)
+		})
+	}, [])
 
 
 	useEffect(() => {
-		if(classes && classes.length > 0){
-			const approvedClasses = classes.filter(cl => cl.status === 'Approved')
-			// console.log(approvedClasses);
+		if(enrollbasedClasses && enrollbasedClasses.length > 0){
+
+
+			const approvedClasses = enrollbasedClasses.filter(cl => cl.status === 'Approved')
+			console.log(approvedClasses);
 			setApprovedClasses(approvedClasses)
 		}
-	},[classes])
+	},[enrollbasedClasses])
 
 
 
@@ -75,13 +87,11 @@ const Classes = () => {
 		}
 
 	}
-
-
 	return (
-		<div className="pt-24 md:pt-32 pb-10">
-			<h1 className="text-2xl md:text-3xl text-white font-extrabold text-center">All Classes</h1>
+		<div className="pt-10 md:pt-20 pb-10">
+			<h1 className="text-2xl md:text-3xl text-white font-extrabold text-center">Popular Classes</h1>
 
-			<button onClick={() => setAsc(!asc)} className={`btn mt-5 ml-1 md:ml-5 font-bold text-white ${asc ? 'bg-fuchsia-950' : 'bg-green-900' } `}>{asc ? <div className="">Show Price High To Low</div> : <div>Show Price Low To High</div> }</button>
+			{/* <button onClick={() => setAsc(!asc)} className={`btn mt-5 ml-1 md:ml-5 font-bold text-white ${asc ? 'bg-fuchsia-950' : 'bg-green-900' } `}>{asc ? <div className="">Show Price High To Low</div> : <div>Show Price Low To High</div> }</button> */}
 
 	{
 		approvedClasses && approvedClasses.length > 0 ? (<div className={`pt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 p-2 md:px-5 ${approvedClasses?.seats == 0? 'bg-red-600 text-white':''}`}>
@@ -146,8 +156,7 @@ const Classes = () => {
 	}
 
 		</div>
-
 	);
 };
 
-export default Classes;
+export default PopularClasses;

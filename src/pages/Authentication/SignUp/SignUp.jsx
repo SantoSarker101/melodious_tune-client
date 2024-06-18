@@ -61,7 +61,7 @@ const SignUp = () => {
 		.then(res => res.json())
 		.then(imageData => {
 			const imageURL = imageData.data.display_url
-			console.log(imageURL);
+			// console.log(imageURL);
 
 		createUser(email,password)
         .then(result => {
@@ -73,7 +73,9 @@ const SignUp = () => {
             toast.success('Signup successful');
 
             // Save User to Database
-            const saveUser = {name: result.user.displayName, email: result.user.email, image: result.user.imageURL}
+            const saveUser = {name: result.user.displayName, email: result.user.email, image: result.user.photoURL}
+
+            console.log(saveUser);
 
             axiosSecure.put(`/users/${result?.user?.email}`, saveUser)
             .then(data => {
