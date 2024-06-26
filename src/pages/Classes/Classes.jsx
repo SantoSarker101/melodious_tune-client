@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import useSelectedClasses from "../../Hooks/useSelectedClasses";
 import useAdmin from "../../Hooks/useAdmin";
 import useInstructor from "../../Hooks/useInstructor";
+import { motion } from "framer-motion"
 
 const Classes = () => {
 	const [approvedClasses, setApprovedClasses] = useState([])
@@ -86,7 +87,7 @@ const Classes = () => {
 	{
 		approvedClasses && approvedClasses.length > 0 ? (<div className={`pt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 p-2 md:px-5 ${approvedClasses?.seats == 0? 'bg-red-600 text-white':''}`}>
 			{
-			approvedClasses.map(approvedClass =>  <div key={approvedClass._id} className='col-span-1 cursor-pointer group shadow-slate-50 shadow-md p-2 rounded-lg text-white'>
+			approvedClasses.map(approvedClass =>  <motion.div initial={{ opacity: 0, x: 500 }} animate={{ opacity: 1, x:0 }} transition={{duration: 4}} key={approvedClass._id} className='col-span-1 cursor-pointer group shadow-slate-50 shadow-md p-2 rounded-lg text-white'>
 				<div className='flex flex-col gap-2 w-full'>
 				<div
 					className='
@@ -138,7 +139,7 @@ const Classes = () => {
 				</div>
 
 				</div>
-			</div>)
+			</motion.div>)
 			}
 			</div>) : (
 			<h1 className="flex justify-center items-center text-red-500 text-3xl font-extrabold mt-7">No Class Available</h1>

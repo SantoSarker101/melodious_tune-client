@@ -7,6 +7,7 @@ import useSelectedClasses from "../../../Hooks/useSelectedClasses";
 import useAdmin from "../../../Hooks/useAdmin";
 import useInstructor from "../../../Hooks/useInstructor";
 import Swal from "sweetalert2";
+import { motion } from "framer-motion"
 
 const PopularClasses = () => {
 	const [approvedClasses, setApprovedClasses] = useState([])
@@ -94,9 +95,9 @@ const PopularClasses = () => {
 			{/* <button onClick={() => setAsc(!asc)} className={`btn mt-5 ml-1 md:ml-5 font-bold text-white ${asc ? 'bg-fuchsia-950' : 'bg-green-900' } `}>{asc ? <div className="">Show Price High To Low</div> : <div>Show Price Low To High</div> }</button> */}
 
 	{
-		approvedClasses && approvedClasses.length > 0 ? (<div className={`pt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 p-2 md:px-5 ${approvedClasses?.seats == 0? 'bg-red-600 text-white':''}`}>
+		approvedClasses && approvedClasses.length > 0 ? (<div className='pt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 p-2 md:px-5'>
 			{
-			approvedClasses.map(approvedClass =>  <div key={approvedClass._id} className='col-span-1 cursor-pointer group shadow-slate-50 shadow-md p-2 rounded-lg text-white'>
+			approvedClasses.map(approvedClass =>  <motion.div initial={{ opacity: 0, y: 500 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 3 }} key={approvedClass._id} className={`col-span-1 cursor-pointer group shadow-slate-50 shadow-md p-2 rounded-lg text-white ${approvedClass?.seats == 0? 'bg-red-600 text-white':''}`}>
 				<div className='flex flex-col gap-2 w-full'>
 				<div
 					className='
@@ -148,7 +149,7 @@ const PopularClasses = () => {
 				</div>
 
 				</div>
-			</div>)
+			</motion.div>)
 			}
 			</div>) : (
 			<h1 className="flex justify-center items-center text-red-500 text-3xl font-extrabold mt-7">No Class Available</h1>
