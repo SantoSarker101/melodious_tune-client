@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -6,10 +6,12 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import toast from "react-hot-toast";
 import { ImSpinner3 } from "react-icons/im";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const [axiosSecure] = useAxiosSecure()
   const { loading,setLoading,signIn,signInWithGoogle } = useContext(AuthContext)
+  const [show, setShow] = useState(false)
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || '/';
@@ -78,7 +80,7 @@ const Login = () => {
           <label className="label">
             <span className="label-text">Email</span>
           </label>
-          <input type="email" {...register("email", { required: true })}  placeholder="email" className="input input-bordered" />
+          <input type="email" {...register("email", { required: true })}  placeholder="email" className="input input-bordered w-full" />
           {errors.email && <span className="text-red-500">Email is required</span>}
         </div>
 
@@ -86,7 +88,19 @@ const Login = () => {
           <label className="label">
             <span className="label-text">Password</span>
           </label>
-          <input type="password" {...register("password", { required: true })} placeholder="password" className="input input-bordered" />
+
+          <div className="relative">
+          <input type={show ? 'text' : 'password'} {...register("password", { required: true })} placeholder="Password" className="input input-bordered w-full" />
+
+          <p className="absolute right-2 cursor-pointer top-3" onClick={() => setShow(!show)}>
+						<small>
+							{
+								show ? <span><FaEye className='w-5 h-5' /></span> : <span><FaEyeSlash className='w-5 h-5' /></span>
+							}
+						</small>
+					</p>
+
+          </div>
 
           {errors.password && <span className="text-red-500">Password is required</span>}
 

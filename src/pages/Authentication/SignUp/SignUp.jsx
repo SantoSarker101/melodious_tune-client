@@ -5,6 +5,7 @@ import { ImSpinner3 } from "react-icons/im";
 import { FcGoogle } from "react-icons/fc";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const SignUp = () => {
   const [axiosSecure] = useAxiosSecure()
@@ -15,6 +16,7 @@ const SignUp = () => {
 	const [error, setError] = useState('')
 	const [er, setEr] = useState('')
 	const [passError, setPassError] = useState('')
+  const [show, setShow] = useState(false)
 
 
 	// User Registration Handle
@@ -200,14 +202,25 @@ const SignUp = () => {
                   Password
                 </label>
               </div>
-              <input
-                type='password'
-                name='password'
-                id='password'
-                required
-                placeholder='*******'
-                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
-              />
+              <div className="relative">
+                <input
+                  type={show ? 'text' : 'password'}
+                  name='password'
+                  id='password'
+                  required
+                  placeholder='*******'
+                  className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900 relative'
+                />
+
+            <p className="absolute right-2 cursor-pointer top-3" onClick={() => setShow(!show)}>
+						<small>
+							{
+								show ? <span ><FaEye className='h-5 w-5' /></span> : <span><FaEyeSlash className='h-5 w-5' /></span>
+							}
+						</small>
+					</p>
+
+              </div>
             </div>
 
 			{passError && <p className="text-red-500">{passError}</p>}
@@ -219,14 +232,26 @@ const SignUp = () => {
 				Confirm Password
                 </label>
               </div>
-              <input
-                type='password'
-                name='confirmPassword'
-                id='confirmPassword'
-                required
-                placeholder='*******'
-                className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
-              />
+
+              <div className="relative">
+                <input
+                  type={show ? 'text' : 'password'}
+                  name='confirmPassword'
+                  id='confirmPassword'
+                  required
+                  placeholder='*******'
+                  className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
+                />
+
+            <p className="absolute right-2 cursor-pointer top-3" onClick={() => setShow(!show)}>
+						<small>
+							{
+								show ? <span><FaEye className='h-5 w-5' /></span> : <span><FaEyeSlash className='h-5 w-5' /></span>
+							}
+						</small>
+					</p>
+
+              </div>
 
 				{error && <p className="text-red-500 text-center mt-4">{error}</p>}
             </div>
