@@ -29,9 +29,9 @@ const Instructor = () => {
 			<h1 className="text-2xl md:text-3xl text-white font-extrabold text-center">Instructors</h1>
 			<hr className="border-b-0 w-32 md:w-52 mx-auto mt-1" />
 
-	<div className={`pt-24 md:pt-40 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 p-2 md:px-5 ${Instructors?.seats == 0? 'bg-red-600 text-white':''}`}>
+	<div className='pt-16 md:pt-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 p-2 md:px-5'>
 			{
-			Instructors.map(Instructor =>  <motion.div initial={{ opacity: 0, x: -500 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 10 }} key={Instructor._id} className='col-span-1 cursor-pointer shadow-slate-50 rounded-lg text-white group'>
+			Instructors.slice(0, 6).map(Instructor =>  <motion.div initial={{ opacity: 0, x: -500 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 10 }} key={Instructor._id} className='col-span-1 cursor-pointer shadow-slate-50 rounded-lg text-white group'>
 				<div className='flex flex-col gap-2 w-full'>
 				<div
 					className='
