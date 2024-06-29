@@ -4,6 +4,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion"
+import { Helmet } from "react-helmet-async";
 
 const Instructor = () => {
 	// const [classes] = useClasses()
@@ -26,6 +27,10 @@ const Instructor = () => {
 	// },[users])
 	return (
 		<div className="pb-8 pt-28 md:pt-32">
+
+		{/* <Helmet><title>Melodious Tune |
+		Instructors</title></Helmet> */}
+
 			<h1 className="text-2xl md:text-3xl text-sky-400 font-extrabold text-center">Instructors</h1>
 			<motion.hr initial={{ opacity: 0, x: 500 }}
 					animate={{ opacity: 1, x: 0 }}

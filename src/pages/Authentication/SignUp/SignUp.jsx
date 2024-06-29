@@ -6,6 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 const SignUp = () => {
   const [axiosSecure] = useAxiosSecure()
@@ -143,6 +144,10 @@ const SignUp = () => {
 
 	return (
 	<div>
+
+  <Helmet><title>Melodious Tune |
+  SignUp</title></Helmet>
+
 		<div className='flex justify-center items-center min-h-screen pt-32 pb-10'>
       <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
         <div className='mb-8 text-center'>

@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { ImSpinner3 } from "react-icons/im";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const [axiosSecure] = useAxiosSecure()
@@ -68,6 +69,10 @@ const Login = () => {
 
 	return (
 		<div className="hero min-h-screen bg-base-200 pt-16">
+
+  <Helmet><title>Melodious Tune |
+  Login</title></Helmet>
+
   <div className="hero-content flex-col lg:flex-row-reverse">
     <div className="text-center lg:text-left">
       <h1 className="text-5xl font-bold">Login now!</h1>

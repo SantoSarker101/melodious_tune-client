@@ -8,6 +8,7 @@ import useSelectedClasses from "../../Hooks/useSelectedClasses";
 import useAdmin from "../../Hooks/useAdmin";
 import useInstructor from "../../Hooks/useInstructor";
 import { motion } from "framer-motion"
+import { Helmet } from "react-helmet-async";
 
 const Classes = () => {
 	const [approvedClasses, setApprovedClasses] = useState([])
@@ -80,6 +81,10 @@ const Classes = () => {
 
 	return (
 		<div className="pt-28 md:pt-32 pb-10">
+
+		<Helmet><title>Melodious Tune |
+		Classes</title></Helmet>
+
 			<h1 className="text-2xl md:text-3xl text-sky-400 font-extrabold text-center">All Classes</h1>
 
 			<motion.hr initial={{ opacity: 0, y: 500 }}
