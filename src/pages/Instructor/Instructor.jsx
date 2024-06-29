@@ -4,7 +4,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion"
-import { Helmet } from "react-helmet-async";
+// import { Helmet } from "react-helmet-async";
 
 const Instructor = () => {
 	// const [classes] = useClasses()
