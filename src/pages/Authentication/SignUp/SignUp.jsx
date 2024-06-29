@@ -147,7 +147,7 @@ const SignUp = () => {
       <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
         <div className='mb-8 text-center'>
           <h1 className='my-3 text-4xl font-bold'>Sign Up</h1>
-          <p className='text-sm text-gray-400'>Welcome to Melodious Tune</p>
+          <p className='text-sm text-gray-400 font-bold'>Welcome to Melodious Tune</p>
         </div>
         <form onSubmit={handleSubmit}
           noValidate=''
@@ -274,7 +274,7 @@ const SignUp = () => {
 
         <div className='flex items-center pt-4 space-x-1'>
           <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
-          <p className='px-3 text-sm dark:text-gray-400'>
+          <p className='px-3 text-sm dark:text-gray-400 font-bold'>
             Signup with social accounts
           </p>
           <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
@@ -286,11 +286,11 @@ const SignUp = () => {
           <p>Continue with Google</p>
         </div>
 
-        <p className='px-6 text-sm text-center text-gray-400'>
+        <p className='px-6 text-sm text-center text-gray-400 font-bold'>
           Already have an account?{' '}
           <Link
             to='/login'
-            className='hover:underline hover:text-rose-500 text-gray-600'
+            className='hover:underline hover:text-rose-500 text-green-500'
           >
             Login
           </Link>

@@ -91,7 +91,7 @@ const DropdownMenu = () => {
 				width={30}
 				height={30}
 				/>
-				</> : <div className="text-white font-extrabold"><FaUser /></div>
+				</> : <div className="text-gray-400 font-extrabold"><FaUser /></div>
 			}
 			</div>
 
