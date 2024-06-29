@@ -46,7 +46,7 @@ const EnrolledClasses = () => {
 			<div className="overflow-x-auto">
   <table className="table">
     {/* head */}
-    <thead className="text-white font-extrabold md:text-lg">
+    <thead className="text-violet-500 font-extrabold md:text-lg">
       <tr>
         <th>Number</th>
         <th>Class Picture</th>
@@ -56,7 +56,7 @@ const EnrolledClasses = () => {
       </tr>
     </thead>
 
-    <tbody className="text-orange-300 font-extrabold">
+    <tbody className="text-orange-500 font-extrabold">
 
     {
 		enrolledClasses.map((enrolledClass, index) => <tr key={enrolledClass._id} >

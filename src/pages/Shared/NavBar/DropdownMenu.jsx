@@ -17,20 +17,20 @@ const DropdownMenu = () => {
 		<div className='flex flex-row items-center gap-3'>
 
 		<Link to='/'>
-			<div className='hidden md:block text-sm py-3 px-4 rounded-full text-white  hover:bg-purple-950 font-bold  transition cursor-pointer'>
+			<div className='hidden md:block text-sm py-3 px-4 rounded-full text-orange-500 hover:text-white  hover:bg-purple-950 font-bold  transition cursor-pointer'>
 				Home
 			</div>
 		</Link>
 
 
 		<Link to='/instructor'>
-			<div className='hidden md:block text-sm py-3 px-4 rounded-full text-white  hover:bg-purple-950 font-bold transition cursor-pointer'>
+			<div className='hidden md:block text-sm py-3 px-4 rounded-full text-orange-500 hover:text-white  hover:bg-purple-950 font-bold transition cursor-pointer'>
 			Instructors
 			</div>
 		</Link>
 
 		<Link to='/classes'>
-			<div className='hidden md:block text-sm py-3 px-4 rounded-full text-white  hover:bg-purple-950 font-bold transition cursor-pointer'>
+			<div className='hidden md:block text-sm py-3 px-4 rounded-full text-orange-500 hover:text-white  hover:bg-purple-950 font-bold transition cursor-pointer'>
 			Classes
 			</div>
 		</Link>
@@ -40,14 +40,14 @@ const DropdownMenu = () => {
 		user ? <>
 
 		<Link to='/dashboard'>
-		<div className='hidden md:block text-sm py-3 px-4 rounded-full text-white  hover:bg-purple-950 font-bold transition cursor-pointer'>
+		<div className='hidden md:block text-sm py-3 px-4 rounded-full text-orange-500 hover:text-white  hover:bg-purple-950 font-bold transition cursor-pointer'>
 			Dashboard
 		</div>
 		</Link>
 
 		<Link>
 
-		<div onClick={handleLogout} className='hidden md:block text-sm py-3 px-4 rounded-full text-white  hover:bg-purple-950 font-bold  transition cursor-pointer'>
+		<div onClick={handleLogout} className='hidden md:block text-sm py-3 px-4 rounded-full text-orange-500 hover:text-white  hover:bg-purple-950 font-bold  transition cursor-pointer'>
 			Logout
 		</div>
 
@@ -57,7 +57,7 @@ const DropdownMenu = () => {
 
 		<Link to='/login'>
 
-		<div className='hidden md:block text-sm py-3 px-4 rounded-full text-white  hover:bg-purple-950 font-bold  transition cursor-pointer'>
+		<div className='hidden md:block text-sm py-3 px-4 rounded-full text-orange-500 hover:text-white  hover:bg-purple-950 font-bold  transition cursor-pointer'>
 			Login
 		</div>
 
@@ -66,7 +66,7 @@ const DropdownMenu = () => {
 
 		<Link to='/signup'>
 
-		<div className='hidden md:block text-sm py-3 px-4 rounded-full text-white  hover:bg-purple-950 font-bold transition cursor-pointer'>
+		<div className='hidden md:block text-sm py-3 px-4 rounded-full text-orange-500 hover:text-white  hover:bg-purple-950 font-bold transition cursor-pointer'>
 			Sign Up
 		</div>
 
@@ -78,7 +78,7 @@ const DropdownMenu = () => {
 		{/* Dropdown btn */}
 		<div
 			onClick={ () => setIsOpen(!isOpen)}
-			className='p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition'
+			className='p-4 md:py-1 md:px-2 border-[1px] border-neutral-300 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition'
 		>
 
 			<div>
@@ -95,7 +95,7 @@ const DropdownMenu = () => {
 			}
 			</div>
 
-			<div className="text-white font-extrabold md:font-bold">
+			<div className="text-orange-700 font-extrabold md:hidden">
 			<AiOutlineMenu></AiOutlineMenu>
 			</div>
 

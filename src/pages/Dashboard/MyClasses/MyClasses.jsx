@@ -41,7 +41,7 @@ const MyClasses = () => {
 
 	return (
 		<div>
-			<h1 className="text-3xl text-center font-extrabold my-6 text-white">My instructorClasses</h1>
+			<h1 className="text-3xl text-center font-extrabold my-6">My instructorClasses</h1>
 
 
 
@@ -50,7 +50,7 @@ const MyClasses = () => {
 
 
     {/* head */}
-    <thead className="text-white font-extrabold">
+    <thead className="text-violet-500 font-extrabold">
       <tr>
         <th>No.</th>
         <th>Class Image</th>
@@ -67,7 +67,7 @@ const MyClasses = () => {
 
 
 
-    <tbody className="text-white">
+    <tbody className="text-orange-500 font-bold">
 
 	{
 		instructorClasses.map((cls, index) => <tr key={cls._id}>
@@ -83,7 +83,7 @@ const MyClasses = () => {
 			</div>
 			</div>
 		</td>
-		<td className="font-bold">{cls.name}</td>
+		<td className="font-extrabold">{cls.name}</td>
 		<td>{cls.instructorInfo.instructorName}</td>
 		<td>{cls.seats}</td>
 		<td>{cls.price} $</td>

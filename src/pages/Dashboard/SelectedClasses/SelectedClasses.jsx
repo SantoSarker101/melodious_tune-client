@@ -53,9 +53,9 @@ const SelectedClasses = () => {
 
 		<div className="uppercase md:flex justify-evenly items-center md:space-x-40">
 
-		<h3 className="text-xl md:text-3xl font-extrabold text-white md:text-center">Selected Classes: {selectedClasses.length}</h3>
+		<h3 className="text-xl md:text-3xl font-extrabold text-green-500 md:text-center">Selected Classes: {selectedClasses.length}</h3>
 
-		<h3 className="text-xl md:text-3xl font-extrabold text-white md:text-center">Total Price: $ {total}</h3>
+		<h3 className="text-xl md:text-3xl font-extrabold text-green-500 md:text-center">Total Price: $ {total}</h3>
 
 		</div>
 
@@ -70,7 +70,7 @@ const SelectedClasses = () => {
 			<div className="overflow-x-auto">
   <table className="table">
     {/* head */}
-    <thead className="text-white font-extrabold md:text-lg">
+    <thead className="text-violet-500 font-extrabold md:text-lg">
       <tr>
         <th>Number</th>
         <th>Class Picture</th>
@@ -80,7 +80,7 @@ const SelectedClasses = () => {
       </tr>
     </thead>
 
-    <tbody className="text-orange-300 font-extrabold">
+    <tbody className="text-orange-500 font-extrabold">
 
     {
 		selectedClasses.map((selectedClass, index) => <tr key={selectedClass._id} >

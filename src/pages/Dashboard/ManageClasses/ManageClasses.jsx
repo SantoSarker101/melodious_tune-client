@@ -57,7 +57,7 @@ const ManageClasses = () => {
 
 
     {/* head */}
-    <thead className="text-white font-extrabold">
+    <thead className="text-violet-500 font-extrabold">
       <tr>
         <th>No.</th>
         <th>Class Image</th>
@@ -73,7 +73,7 @@ const ManageClasses = () => {
 
 
 
-    <tbody className="text-white">
+    <tbody className="text-orange-500 font-extrabold">
 
 	{
 		classes.map((cls, index) => <tr key={cls._id}>
@@ -89,7 +89,7 @@ const ManageClasses = () => {
 			</div>
 			</div>
 		</td>
-		<td className="font-bold">{cls?.name}</td>
+		<td>{cls?.name}</td>
 		<td>{cls?.instructorInfo.instructorName}</td>
 		<td>{cls?.instructorInfo.instructorEmail}</td>
 		<td>{cls?.seats}</td>
@@ -101,7 +101,7 @@ const ManageClasses = () => {
 				Approve
 			</button>
 			{
-				cls?.status === 'Approved' ? <button className="px-2 py-2 rounded-lg bg-green-600 font-extrabold cursor-not-allowed opacity-50">Approved</button> : <></>
+				cls?.status === 'Approved' ? <button className="px-2 py-2 rounded-lg text-white bg-green-600 font-extrabold cursor-not-allowed opacity-50">Approved</button> : <></>
 			}
 
 			{

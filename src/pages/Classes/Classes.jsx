@@ -79,15 +79,19 @@ const Classes = () => {
 
 
 	return (
-		<div className="pt-24 md:pt-32 pb-10">
-			<h1 className="text-2xl md:text-3xl text-white font-extrabold text-center">All Classes</h1>
+		<div className="pt-28 md:pt-32 pb-10">
+			<h1 className="text-2xl md:text-3xl text-sky-400 font-extrabold text-center">All Classes</h1>
+
+			<motion.hr initial={{ opacity: 0, y: 500 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 3 }} className="mb-6 w-32 md:w-40 mx-auto border-b-2 border-fuchsia-500" />
 
 			<button onClick={() => setAsc(!asc)} className={`btn mt-5 ml-1 md:ml-5 font-bold text-white ${asc ? 'bg-fuchsia-950' : 'bg-green-900' } `}>{asc ? <div className="">Show Price High To Low</div> : <div>Show Price Low To High</div> }</button>
 
 	{
 		approvedClasses && approvedClasses.length > 0 ? (<div className={`pt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 p-2 md:px-5 ${approvedClasses?.seats == 0? 'bg-red-600 text-white':''}`}>
 			{
-			approvedClasses.map(approvedClass =>  <motion.div initial={{ opacity: 0, x: 500 }} animate={{ opacity: 1, x:0 }} transition={{duration: 4}} key={approvedClass._id} className='col-span-1 cursor-pointer group shadow-slate-50 shadow-md p-2 rounded-lg text-white'>
+			approvedClasses.map(approvedClass =>  <motion.div initial={{ opacity: 0, x: 500 }} animate={{ opacity: 1, x:0 }} transition={{duration: 4}} key={approvedClass._id} className='col-span-1 cursor-pointer group shadow-slate-400 shadow-md p-2 rounded-lg text-green-500 font-bold'>
 				<div className='flex flex-col gap-2 w-full'>
 				<div
 					className='
